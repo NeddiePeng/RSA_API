@@ -6,6 +6,7 @@
  * Time: 9:48
  */
 header('Content-type:text/html;charset=utf-8');
+include "RSA.php";
 //私钥
 $private_key = "-----BEGIN RSA PRIVATE KEY-----
 MIICXgIBAAKBgQDoPvftMlFtQ1TTc0BkDpWDbRn8a3Uiia5U1FOnfuBZsj0LIF8i
@@ -25,4 +26,5 @@ HsVRgj4PM6eLuxaMbmvzToRvJIRBX1hc6Va6a7oeXhezHQ==
 $hex_encrypt_data = trim($_POST['password']); //十六进制数据
 $encrypt_data = pack("H*", $hex_encrypt_data);//对十六进制数据进行转换
 openssl_private_decrypt($encrypt_data, $decrypt_data, $private_key);
-echo '解密后的数据：' . $decrypt_data;
+echo '解密后的数据：' . $decrypt_data.'<pre>';
+
